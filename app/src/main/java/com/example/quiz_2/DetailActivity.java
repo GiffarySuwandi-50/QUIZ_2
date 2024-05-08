@@ -35,8 +35,6 @@ public class DetailActivity extends AppCompatActivity {
             cost = getIntent().getParcelableExtra(KEY_DATA);
         }
 
-        Locale localeID = new Locale("in", "ID");
-        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
         String type = cost.getType();
         String tambahan = cost.getTambahan();
@@ -45,12 +43,10 @@ public class DetailActivity extends AppCompatActivity {
         int tarifTambahan = cost.getTarifTambahan();
         int total = (tarifType * waktu) + tarifTambahan;
 
-
-
-        binding.txtType.setText("Type : " + type + " (" + formatRupiah.format((double)tarifType) + ")");
-        binding.txtTambahan.setText(tambahan + " : " + formatRupiah.format((double)tarifTambahan));
+        binding.txtType.setText("Type : " + type + " (Rp" + tarifType + ")");
+        binding.txtTambahan.setText(tambahan + " : Rp" + tarifTambahan);
         binding.txtWaktu.setText("Waktu : " + waktu + " jam");
-        binding.txtTotal.setText("Total : " + formatRupiah.format((double)total));
+        binding.txtTotal.setText("Total : Rp" + total);
 
     }
 }

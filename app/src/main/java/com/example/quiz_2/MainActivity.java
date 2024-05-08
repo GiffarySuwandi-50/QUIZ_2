@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         binding.btnPesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
                     if (binding.PS5.isChecked()) {
                         cost.setType("PS5");
                         cost.setTarifType(10000);
@@ -42,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
                     } else if (binding.PSVR.isChecked()) {
                         cost.setType("PSVR");
                         cost.setTarifType(20000);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Pilih type terlebih dahulu!", Toast.LENGTH_SHORT).show();
                     }
 
                     if (binding.indomie.isChecked()) {
@@ -59,18 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
                     String waktu = binding.etWaktu.getText().toString();
                     int waktuMain = Integer.parseInt(waktu);
-                    if (waktu.isEmpty()) {
-                        binding.etWaktu.setError("Isi Terlebih Dahulu!");
-                    } else {
-                        cost.setWaktu(waktuMain);
-                    }
+                    cost.setWaktu(waktuMain);
 
                     Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                     intent.putExtra(DetailActivity.KEY_DATA, cost);
                     startActivity(intent);
-                } catch (NumberFormatException e) {
-                    binding.etWaktu.setError("Waktu harus berupa angka!");
-                }
             }
         });
     }
